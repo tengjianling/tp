@@ -43,6 +43,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    /**
+     * The card that shows this person's data
+     * @param person The person
+     * @param displayedIndex Index of the person
+     */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
