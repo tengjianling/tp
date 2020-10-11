@@ -106,6 +106,10 @@ public class QuestionSet {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getQuestion())
+                .append(" Phone: ")
+                .append(getPhone())
+                .append(" Email: ")
+                .append(getEmail())
                 .append(" Answer: ")
                 .append(getAnswer())
                 .append(" Tags: ");
