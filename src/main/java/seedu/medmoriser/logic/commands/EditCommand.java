@@ -2,8 +2,6 @@ package seedu.medmoriser.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_ANSWER;
-import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_QUESTIONSETS;
