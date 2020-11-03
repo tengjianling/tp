@@ -2,6 +2,7 @@ package seedu.medmoriser.model.qanda;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 /**
  * Tests that a {@code QAndA}'s {@code Question} matches any of the keywords given.
@@ -16,7 +17,8 @@ public class QuestionContainsKeywordsPredicate implements Predicate<QAndA> {
     @Override
     public boolean test(QAndA qAndA) {
         return keywords.stream()
-                .anyMatch(keyword -> qAndA.getQuestion().question.toLowerCase().contains(keyword.toLowerCase()));
+                .anyMatch(keyword -> qAndA.getQuestion().question.toLowerCase()
+                        .matches((".*\\b" + Pattern.quote(keyword) + "\\b.*".toLowerCase())));
     }
 
     @Override
