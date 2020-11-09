@@ -3,19 +3,18 @@ layout: page
 title: Cheng Jiyuqing's Project Portfolio Page
 ---
 
+
 ## Project: Medmoriser
 
 Medmoriser is a desktop app to help medical students organise, memorise and revise their content. The user interacts with it using a CLI, and it has a GUI created with JavaFX and is written in Java.
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chengjiyuqing&sort=groupTitle&sortWithin=title&since=2020-08-14&until=2020-11-09&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+
+* **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chengjiyuqing)
 
 * **Project management**:
   * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
-
-<div style="page-break-after: always;"></div>
-
 
 * **Enhancements to existing features**:
   * Created new GUI component QuizCard to acommodate Quiz command, Answer command, Endquiz command and Next command
