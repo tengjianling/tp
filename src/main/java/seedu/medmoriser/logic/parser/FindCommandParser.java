@@ -1,6 +1,9 @@
 package seedu.medmoriser.logic.parser;
 
 import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_ANSWER;
+import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_QUESTION;
+import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
 
@@ -29,6 +32,25 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
+        if (args.contains("q/") && args.contains("t/") && args.contains("a/")
+                || args.contains("q/") && args.contains("a/") || args.contains("q/") && args.contains("t/")
+                || args.contains("t/") && args.contains("a/")) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
+        if (!containsMaximumOnce(args, PREFIX_QUESTION)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_ONE_PREFIX));
+        }
+
+        if (!containsMaximumOnce(args, PREFIX_ANSWER)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_ONE_PREFIX));
+        }
+
+        if (!containsMaximumOnce(args, PREFIX_TAG)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_ONE_PREFIX));
+        }
+
         String[] keywordsArray = trimmedArgs.split("/|, ");
         String[] excludeType = keywordsArray;
 
@@ -39,6 +61,11 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (keywordsArray.length > 1) {
             excludeType = Arrays.copyOfRange(keywordsArray, 1, keywordsArray.length);
         }
+
+        if (!args.contains("q/") && !args.contains("a/") && !args.contains("t/")) {
+            return new FindCommand(new QAndAContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
+        }
+
         switch (findType) {
         case "t":
             return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(excludeType)));
@@ -47,7 +74,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         case "a":
             return new FindCommand(new AnswerContainsKeywordsPredicate(Arrays.asList(excludeType)));
         default:
-            return new FindCommand(new QAndAContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
     }
 
@@ -59,4 +86,15 @@ public class FindCommandParser implements Parser<FindCommand> {
         return toReturn;
     }
 
+    /**
+     * Returns true if prefix only appears once in the string
+     * @param s The string to compare with.
+     * @param prefix The prefix to compare with.
+     * @return a boolean to indicate if prefix only appears in s once.
+     */
+    private boolean containsMaximumOnce(String s, Prefix prefix) {
+        String prefixString = prefix.toString();
+        int i = s.indexOf(prefixString);
+        return i == s.lastIndexOf(prefixString);
+    }
 }
