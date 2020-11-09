@@ -10,6 +10,7 @@ import java.util.Random;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.medmoriser.commons.core.Messages;
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.qanda.QAndA;
@@ -78,24 +79,28 @@ public class QuizCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredQAndAList(predicate);
-        ObservableList<QAndA> filteredList = model.getFilteredQAndAList();
-
-        for (QAndA q : filteredList) {
-            currentList.add(q);
-        }
-
-        if (filteredList.size() > 0) {
-            QAndA question = getRandomQuestion(currentList);
-
-            currentList.remove(question);
-
-            model.updateFilteredQAndAList(x -> x.equals(question));
-            setIsQuiz(true, model);
-
-            return new CommandResult(MESSAGE_SUCCESS);
+        if (getIsQuiz()) {
+            throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);
         } else {
-            throw new CommandException(MESSAGE_NO_QUESTION_WITH_KEYWORD);
+            model.updateFilteredQAndAList(predicate);
+            ObservableList<QAndA> filteredList = model.getFilteredQAndAList();
+
+            for (QAndA q : filteredList) {
+                currentList.add(q);
+            }
+
+            if (filteredList.size() > 0) {
+                QAndA question = getRandomQuestion(currentList);
+
+                currentList.remove(question);
+
+                model.updateFilteredQAndAList(x -> x.equals(question));
+                setIsQuiz(true, model);
+
+                return new CommandResult(MESSAGE_SUCCESS);
+            } else {
+                throw new CommandException(MESSAGE_NO_QUESTION_WITH_KEYWORD);
+            }
         }
     }
 
