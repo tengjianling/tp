@@ -114,7 +114,7 @@ Expected Result:
 
 ![DeleteResult](images/DeleteResult.png)
 
-The `delete 2 ` command deletes the 2nd QAndA in the database, as shown above.
+The `delete 4 ` command deletes the 4th QAndA in the database, as shown above.
 
 ### Listing all QAndAs: `list` (by: Jonathan Foo)
 
@@ -129,11 +129,11 @@ Examples:
 * `list` - show all questions and answers
 * `list questions` - show all questions
 
-The expected behaviour of list is shown below:
+The expected behaviour of `list` is shown below:
 
 ![ListCommand](images/ListCommand.png)
 
-The expected behaviour of list questions is shown below:
+The expected behaviour of `list questions` is shown below:
 
 ![ListQuestionsCommand](images/ListQuestionsCommand.png)
 
@@ -178,7 +178,7 @@ Expected Result:
 
 ![EditResult](images/EditResult.png)
 
-The `edit 2 q/how many bones are there in an ADULT human skeleton? t/ ` input will edit the QAndA at index 2 and remove all tags as shown.
+The `edit 6 q/how many bones are there in an ADULT human skeleton? t/ ` input will edit the QAndA at index 6 and remove all tags as shown.
 
 ### Finding QAndA by keywords: `find` (by: Yong Ming Yang)
 The `find` function allows you to find existing QAndA based on keywords and phrases.
@@ -294,6 +294,16 @@ If you want to skip the current quiz question, you can enter `next` without answ
 * When there are no more questions with the specified keywords, you will not be able to use `next` to retrieve another quiz question.
 
 </div>
+
+How it should look like in the application:
+
+![QuizContext](images/NextContext.png)
+
+Expected Result:
+
+![QuizResult](images/NextResult.png)
+
+Assuming the user is in a quiz for `t/respiratory system`, the input `next` will display a new randomly selected question with the tag `respiratory system`, as shown above. 
 
 ### Ending a quiz: `endquiz` (by: Joshua Tan)
 Once you are done with a quiz and have finished comparing your input answer with the answer in the question, you have to end the quiz to run other commands.
