@@ -24,6 +24,10 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
+    public static final String MESSAGE_ONE_PREFIX = "There are multiple prefixes present.\n"
+            + "Please ensure that q/ is before the question keyword or a/ is before the answer keyword "
+            + "or t/ is before the tag keyword";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all QAndAs whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters (each keyword/phrase separated by a comma): "
