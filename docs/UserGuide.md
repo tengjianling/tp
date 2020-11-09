@@ -129,11 +129,11 @@ Examples:
 * `list` - show all questions and answers
 * `list questions` - show all questions
 
-The expected behaviour of list is shown below:
+The expected behaviour of `list` is shown below:
 
 ![ListCommand](images/ListCommand.png)
 
-The expected behaviour of list questions is shown below:
+The expected behaviour of `list questions` is shown below:
 
 ![ListQuestionsCommand](images/ListQuestionsCommand.png)
 
