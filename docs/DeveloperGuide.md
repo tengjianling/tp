@@ -2,9 +2,9 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
+* Table of Contents:
 {:toc}
-
+  
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -133,6 +133,25 @@ Classes used by multiple components are in the `seedu.medmoriser.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Feature (Cheng Jiyuqing)
+
+#### Implementation
+
+This portion describes the implementation of the add feature which allows the user to add new QAndAs with the question, answer and tags(optional).
+
+Explanation of the diagrams:
+
+1. As the user parses the add command through the `UI`, the `MedmoriserParser` identifies this as a `AddCommand` and passes the user input to the `AddCommandParser`.
+2. The `AddCommandParser` ensures the input is of correct format and identifies the input for question, answer and tag(s).
+3. The `AddCommandParser` then creates a new QAndA object, and passes it to a new `AddCommand` object to handle the rest of the job.
+4. The `AddCommand` object will then add the new QAndA to model, and return a `CommandResult` containing a message to users indicating success in adding a new QAndA.
+5. `UI` will also be updated accordingly.
+
+The following sequence diagram (Fig 1.1) shows how the add operation works:
+
+(Figure 1.1: Add Command Sequence Diagram)
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
 ### Find feature (Ming Yang)
 
 #### Implementation
@@ -145,14 +164,14 @@ Explanation of the diagrams:
 3. A `FindCommand` with the respective predicate such as `TagContainsKeywordPredicate` is created and returned to the `LogicManager`.
 4. The filtered list of question will be displayed on the `UI`.
 
-The following sequence diagram (Fig 1.1) shows how the find operation works:
+The following sequence diagram (Fig 1.2) shows how the find operation works:
 
-(Figure 1.1: Find Command Sequence Diagram)
+(Figure 1.2: Find Command Sequence Diagram)
 ![UndoSequenceDiagram](images/FindSequenceDiagram.png)
 
-The activity diagram below (Fig 1.2) shows the activity flow of the find feature.
+The activity diagram below (Fig 1.3) shows the activity flow of the find feature.
 
-(Figure 1.2: Find Command Activity Diagram)
+(Figure 1.3: Find Command Activity Diagram)
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
 ### Quiz Feature (Joshua Tan)
@@ -174,14 +193,14 @@ identified as a `QuizCommand`. The command is then parsed by `QuizCommandParser`
 
 5. The `QuizCard` will be displayed on the `UI`.
 
-The sequence diagram below (Fig 1.3) shows the interactions between the Logic and model components for the quiz command.
+The sequence diagram below (Fig 1.4) shows the interactions between the Logic and model components for the quiz command.
 
-(Figure 1.3: Quiz Command Sequence Diagram)
+(Figure 1.4: Quiz Command Sequence Diagram)
 ![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
 
-The diagram below (Fig 1.4) shows the activity diagram flow for the quiz command
+The diagram below (Fig 1.5) shows the activity diagram flow for the quiz command
 
-(Figure 1.4: Quiz Command Activity Diagram)
+(Figure 1.5: Quiz Command Activity Diagram)
 ![QuizActivityDiagram](images/QuizActivityDiagram.png)
 
 
@@ -202,15 +221,15 @@ This feature allows the user to delete a QAndA from the answer book. The flow of
 
    If any of the scenarios above occur, a `CommandException` will be thrown with their respective error messages. Othewise, a new `CommandResult` is returned, along with a success message that the specified QAndA has been successfully deleted
 
-The sequence diagram (Fig. 1.5) below shows the flow of the delete feature.
+The sequence diagram (Fig. 1.6) below shows the flow of the delete feature.
 
-(Figure 1.5: Delete Command Sequence Diagram)
+(Figure 1.6: Delete Command Sequence Diagram)
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
-The activity diagram (Fig 1.6) below further shows the flow of the delete feature.
+The activity diagram (Fig 1.7) below further shows the flow of the delete feature.
 
-(Figure 1.6: Delete Command Activity Diagram)
+(Figure 1.7: Delete Command Activity Diagram)
 
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
@@ -231,24 +250,19 @@ This section elaborates on the implementation of the list feature.
 
 5. `Ui` checks the `CommandResult` object and modifies the visibility of the `Answer` label. In this case, the visibilty is set to `hidden`
 
-The sequence diagram below (Fig 1.7) shows the interactions between the Ui and Logic components for the list command.
+The sequence diagram below (Fig 1.8) shows the interactions between the Ui and Logic components for the list command.
 
-(Figure 1.7: List Command Sequence Diagram)
+(Figure 1.8: List Command Sequence Diagram)
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
-The following activity diagram (Fig 1.8) summarises what happens when a user executes the `list` command.
+The following activity diagram (Fig 1.9) summarises what happens when a user executes the `list` command.
 
-(Figure 1.6: List Command Activity Diagram)
+(Figure 1.9: List Command Activity Diagram)
 ![ListActivityDiagram](images/ListActivityDiagram.png)
 
 #### Design considerations:
 * The `Ui` component was selected to perform the showing/hiding of answers as it already had access to the various components in the GUI, hence preventing further coupling between the different components.
 * We decided to use `list` rather than `list all` to show all questions and answers as we wanted to maintain the original functionality of the `list` command.
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -295,8 +309,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`  | user                                       | find questions by keywords     | locate the Q&A without having to go through the entire list of questions |
 | `* * `   | user                                       | tag questions to its topics    | organise the questions properly by topic                                 |
 | `*`   | organised user                             | archive questions I no longer need | keep my question book organised and updated                          |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -511,30 +523,6 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `find t/immune system`<br>
        Expected: QAndA(s) with the tag `immune system` are shown.
        
-### Deleting a QAndA
-
-1. Deleting a QAndA while all QAndAs are being shown
-
-   1. Prerequisites: List all QAndAs using the `list` command. Multiple QAndAs in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First QAndA is deleted from the list. Details of the deleted QAndA shown in the result box.
-
-   1. Test case: `delete 0`<br>
-      Expected: No QAndA is deleted. Error details shown in the result box.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. Deleting QAndA while only certain QAndAs are being shown
-
-    1. Prerequisites: Multiple QAndAs with the word `heart` in the question. Find all QAndAs with `heart` in the 
-        question using the `find q/heart` command.
-        
-    1. Test case: `delete 2`<br>
-       Expected: Second QAndA is deleted from the list. Details of the deleted QAndA shown in the result box.
-       The window continues to display the remaining QAndAs with `heart` in the question.
-       
 ### Quizzing
 
 1. Starting a quiz
@@ -563,6 +551,30 @@ testers are expected to do more *exploratory* testing.
 **Note:** Remember to `endquiz` and achieve the prerequisites when starting a new test case.
 </div>
 
+### Deleting a QAndA
+
+1. Deleting a QAndA while all QAndAs are being shown
+
+   1. Prerequisites: List all QAndAs using the `list` command. Multiple QAndAs in the list.
+
+   1. Test case: `delete 1`<br>
+      Expected: First QAndA is deleted from the list. Details of the deleted QAndA shown in the result box.
+
+   1. Test case: `delete 0`<br>
+      Expected: No QAndA is deleted. Error details shown in the result box.
+
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1. Deleting QAndA while only certain QAndAs are being shown
+
+    1. Prerequisites: Multiple QAndAs with the word `heart` in the question. Find all QAndAs with `heart` in the 
+        question using the `find q/heart` command.
+        
+    1. Test case: `delete 2`<br>
+       Expected: Second QAndA is deleted from the list. Details of the deleted QAndA shown in the result box.
+       The window continues to display the remaining QAndAs with `heart` in the question.
+       
 ### Saving data
 
 1. Initial setup of data files

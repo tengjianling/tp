@@ -1,6 +1,8 @@
 package seedu.medmoriser.logic.parser;
 
 import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_QUESTION;
+import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
 
@@ -32,6 +34,20 @@ public class QuizCommandParser implements Parser<QuizCommand> {
                 || args.contains("t/") && args.contains("a/")) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, QuizCommand.MESSAGE_USAGE));
+        }
+
+        if (!args.contains("q/")) {
+            if (!args.contains("t/")) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, QuizCommand.MESSAGE_USAGE));
+            }
+        }
+
+        if (!containsMaximumOnce(args, PREFIX_QUESTION)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, QuizCommand.MESSAGE_ONE_PREFIX));
+        }
+        if (!containsMaximumOnce(args, PREFIX_TAG)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, QuizCommand.MESSAGE_ONE_PREFIX));
         }
 
         String[] keywordsArray = trimmedArgs.split("/|, ");
@@ -70,9 +86,9 @@ public class QuizCommandParser implements Parser<QuizCommand> {
      * @param prefix The prefix to compare with.
      * @return a boolean to indicate if prefix only appears in s once.
      */
-    private boolean containsOnce(String s, Prefix prefix) {
+    private boolean containsMaximumOnce(String s, Prefix prefix) {
         String prefixString = prefix.toString();
         int i = s.indexOf(prefixString);
-        return i == s.lastIndexOf(prefixString) && i != -1;
+        return i == s.lastIndexOf(prefixString);
     }
 }

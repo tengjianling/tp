@@ -10,7 +10,7 @@
 
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Medmoriser" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/HealthEmoticon.PNG"/>
+    <Image url="@/images/healthemoticon.png"/>
   </icons>
   <scene>
     <Scene fill="#2c2d33">

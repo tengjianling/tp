@@ -12,26 +12,8 @@ Hi Medical Student! Welcome to the User Guide for **Medmoriser**!
 This guide aims to orientate you to the features of **Medmoriser**. If you're looking for a quiz
 management system, this guide will give you all the information you need to get started with **Medmoriser**.
 
-Table of Contents:
-* [How to use this guide](#how-to-use-this-guide)
-* [Features](#features)
-    * [Help](#viewing-help-help)
-    * [Adding a QAndA](#adding-a-qanda-add-by-cheng-jiyuqing)
-    * [Delete a QAndA](#deleting-a-qanda-delete-by-teng-jian-ling)
-    * [List all QAndAs](#listing-all-qandas-list-by-jonathan-foo)
-    * [Edit a QAndA](#editing-a-qanda-edit-by-teng-jian-ling)
-    * [Find QAndAs](#finding-qanda-by-keywords-find-by-yong-ming-yang)
-    * [Clear all entries](#clearing-all-entries-clear)
-    * [Start a Quiz](#starting-a-quiz-quiz-by-joshua-tan)
-    * [Answering a Quiz Question](#answering-a-quiz-question-answer-by-joshua-tan)
-    * [Next Quiz question](#moving-to-next-quiz-question-next-by-teng-jian-ling)
-    * [End a Quiz](#ending-a-quiz-endquiz-by-joshua-tan)
-    * [Exit the Application](#exiting-the-program-exit)
-    * [Saving data](#saving-the-data)
-    * [Archive (Coming soon)](#archiving-data-files-coming-soon)
-* [FAQ](#faq)
-* [Command Summary](#command-summary)
-
+* Table of Contents:
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -250,6 +232,8 @@ Format: `clear`
 
 You will be able to test yourself on your knowledge from the questions that you added into the application.
 Medmoriser will randomly select a question to quiz you based on the keywords you provide.
+
+There are 2 ways that you can quiz yourself. By question keywords or by tag keywords. If multiple keywords are given, you will be quizzed on a question that has any of the keywords, or all of the keywords.
 
 1. Quiz a QAndA with **questions** containing any of the given keywords.
 

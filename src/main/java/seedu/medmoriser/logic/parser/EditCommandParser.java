@@ -33,10 +33,10 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         Index index;
 
-        if (!containsOnce(args, PREFIX_QUESTION)) {
+        if (!containsMaximumOnce(args, PREFIX_QUESTION)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_ONE_PREFIX));
         }
-        if (!containsOnce(args, PREFIX_ANSWER)) {
+        if (!containsMaximumOnce(args, PREFIX_ANSWER)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_ONE_PREFIX));
         }
         try {
@@ -83,7 +83,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * @param prefix The prefix to compare with.
      * @return a boolean to indicate if prefix only appears in s once.
      */
-    private boolean containsOnce(String s, Prefix prefix) {
+    private boolean containsMaximumOnce(String s, Prefix prefix) {
         String prefixString = prefix.toString();
         int i = s.indexOf(prefixString);
         return i == s.lastIndexOf(prefixString);
