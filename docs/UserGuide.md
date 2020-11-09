@@ -129,9 +129,13 @@ Examples:
 * `list` - show all questions and answers
 * `list questions` - show all questions
 
-The expected behaviour of `list` (left) vs `list questions` (right) is shown below:
+The expected behaviour of list is shown below:
 
 ![ListCommand](images/ListCommand.png)
+
+The expected behaviour of list questions is shown below:
+
+![ListQuestionCommand](images/ListQuestionCommand.png)
 
 ### Editing a QAndA: `edit` (by: Teng Jian Ling)
 
