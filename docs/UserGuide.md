@@ -217,7 +217,7 @@ Examples:
 
 How it should look like in the application:
 
-![FindContext](images/FindContext.png)
+![FindContext](images/FindContext.PNG)
 
 Expected Result:
 
