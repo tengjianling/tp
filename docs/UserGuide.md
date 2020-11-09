@@ -135,7 +135,7 @@ The expected behaviour of list is shown below:
 
 The expected behaviour of list questions is shown below:
 
-![ListQuestionCommand](images/ListQuestionCommand.png)
+![ListQuestionsCommand](images/ListQuestionsCommand.png)
 
 ### Editing a QAndA: `edit` (by: Teng Jian Ling)
 
