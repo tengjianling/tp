@@ -223,8 +223,7 @@ Expected Result:
 
 ![FindResult](images/FindResult.PNG)
 
-The input `find t/Chronic diseases, Diagnosis` will return the questions with the tag "Chronic Diseases" and/or "Diagnosis"
-as shown.
+The input `find t/respiratory system, disease` will return the questions with the tag "respiratory system" and/or "disease" as shown.
 
 ### Clearing all entries: `clear`
 
